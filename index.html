@@ -3,172 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AviaMasters</title>
+<title>Выбор игры</title>
 
 <link rel="preload" href="fonts/BenzinBold.woff2" as="font" type="font/woff2" crossorigin>
 
 <style>
-@font-face{
-  font-family:"BenzinBold";
-  src:url("fonts/BenzinBold.woff2") format("woff2");
-  font-display:swap;
+@font-face {
+  font-family: "BenzinBold";
+  src: url("fonts/BenzinBold.woff2") format("woff2");
+  font-display: swap;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: BenzinBold, sans-serif;
+}
 
-body{
-  min-height:100vh;
-  background:radial-gradient(circle at top,#3a7bd5,#1e3c72 60%,#0b1c3a);
-  font-family:Inter,sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:#fff;
-  overflow:hidden;
+body {
+  background: radial-gradient(circle at 30% 20%, #23254d 0%, #0e1124 60%);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 /* ❄️ СНЕГ */
-.snowflake{
-  position:fixed;
-  top:-10px;
-  color:rgba(255,255,255,.95);
-  pointer-events:none;
-  animation:fall linear infinite;
-  z-index:10000;
+.snowflake {
+  position: fixed;
+  top: -10px;
+  color: rgba(255,255,255,.95);
+  pointer-events: none;
+  animation: fall linear infinite;
+  z-index: 10000;
 }
-@keyframes fall{
-  to{transform:translateY(110vh);opacity:0}
+
+@keyframes fall {
+  to { transform: translateY(110vh); opacity: 0; }
 }
 
 /* ===== PRELOADER ===== */
-#preloader{
-  position:fixed;
-  inset:0;
-  background:radial-gradient(circle at top,#3a7bd5,#1e3c72 60%,#0b1c3a);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-  transition:.6s;
-}
-#preloader.hide{
-  opacity:0;
-  pointer-events:none;
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, #23254d 0%, #0e1124 60%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: .4s;
 }
 
-.loader-box{
-  text-align:center;
-  font-family:BenzinBold;
+#preloader.hide {
+  opacity: 0;
+  pointer-events: none;
 }
 
-.spinner{
-  width:70px;
-  height:70px;
-  border:5px solid rgba(255,255,255,.3);
-  border-top:5px solid #fff;
-  border-radius:50%;
-  animation:spin 1s linear infinite;
-  margin:0 auto 20px;
+.loader-box {
+  text-align: center;
 }
-@keyframes spin{to{transform:rotate(360deg)}}
 
-.percent{
-  margin-top:10px;
-  font-size:22px;
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 5px solid rgba(255,255,255,.25);
+  border-top: 5px solid #fff;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  margin: 0 auto 18px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.percent {
+  font-size: 22px;
 }
 
 /* ===== MAIN ===== */
-.container{
-  max-width:480px;
-  width:100%;
-  text-align:center;
-  z-index:5;
+.box {
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(18px);
+  border-radius: 22px;
+  padding: 42px 26px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.6);
+  text-align: center;
+  width: 100%;
+  max-width: 380px;
+  z-index: 5;
+  animation: fadeIn .7s ease;
 }
 
-.video-box{
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 20px 50px rgba(0,0,0,.6);
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(14px);
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
 }
 
-video{
-  width:100%;
-  display:block;
-  background:#000;
+h1 {
+  font-size: 26px;
+  margin-bottom: 40px;
+  background: linear-gradient(135deg, #fff, #b3e5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.play-btn{
-  margin:25px auto 0;
-  width:100%;
-  max-width:320px;
-  padding:16px;
-  font-family:BenzinBold;
-  font-size:18px;
-  border-radius:50px;
-  border:none;
-  cursor:pointer;
-  color:#fff;
-  background:linear-gradient(135deg,#ffb347,#ff416c);
-  animation:pulse 2s infinite;
-}
-@keyframes pulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.05)}
-}
-
-h2{
-  margin-top:40px;
-  font-family:BenzinBold;
-  background:linear-gradient(135deg,#fff,#b3e5ff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+/* ===== ЕДИНЫЙ СТИЛЬ КНОПОК ===== */
+.game-btn {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 20px auto;
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-size: clamp(16px, 5vw, 20px);
+  font-family: "BenzinBold", sans-serif;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: pulse 2s infinite;
 }
 
-.tg-btn{
-  display:inline-block;
-  margin-top:20px;
-  padding:14px 30px;
-  font-family:BenzinBold;
-  border-radius:50px;
-  background:linear-gradient(135deg,#00b7ff,#007fff);
-  color:#fff;
-  text-decoration:none;
+/* AviaMasters — оранжевая */
+.game-btn.aviamasters {
+  background: linear-gradient(135deg, #ff7b00, #ff2d55);
+  box-shadow: 0 6px 18px rgba(255,90,0,0.5);
 }
 
-/* ===== POPUP ===== */
-.popup{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  opacity:0;
-  visibility:hidden;
-  transition:.4s;
-  z-index:20;
-  padding:20px;
-}
-.popup.active{
-  opacity:1;
-  visibility:visible;
+.game-btn.aviamasters:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(255,125,0,0.6);
 }
 
-.popup-box{
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(18px);
-  padding:18px;
-  border-radius:18px;
-  text-align:center;
-  max-width:320px;
-  width:100%;
+/* TowerRush — синяя */
+.game-btn.towerrush {
+  background: linear-gradient(135deg, #00b7ff, #007fff);
+  box-shadow: 0 6px 18px rgba(0,183,255,0.4);
 }
 
-.win-amount{
-  color:#ff9f1a;
-  font-weight:900;
+.game-btn.towerrush:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 35px rgba(0,183,255,0.6);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 </style>
 </head>
@@ -179,111 +164,62 @@ h2{
 <div id="preloader">
   <div class="loader-box">
     <div class="spinner"></div>
-    <p>Загрузка Aviamasters X-Mas…</p>
     <div class="percent" id="percent">0%</div>
   </div>
 </div>
 
 <!-- MAIN -->
-<div class="container">
-  <div class="video-box">
-    <video id="video" poster="images/preview.png" preload="metadata" playsinline muted>
-      <source src="video/promo.mp4" type="video/mp4">
-    </video>
-  </div>
+<div class="box">
+  <h1>ВЫБЕРИ ИГРУ</h1>
 
-  <button class="play-btn" id="play">🎄 ИСПЫТАТЬ УДАЧУ</button>
+  <a href="aviamasters/index.html" class="game-btn aviamasters">
+    AviaMasters
+  </a>
 
-  <h2>НАЧНИ ИГРАТЬ</h2>
-  
-  <a href="https://t.me/LB_Web_bot" class="tg-btn" target="_blank">
-    Перейти в Telegram канал
+  <a href="towerrush/index.html" class="game-btn towerrush">
+    TowerRush
   </a>
 </div>
 
-<!-- POPUP -->
-<div class="popup" id="popup">
-  <div class="popup-box">
-    <h3>💰 Вы могли выиграть <span class="win-amount">33 125 ₽</span></h3>
-    <p>Попробуй прямо сейчас</p>
-    <a href="https://t.me/LB_Web_bot" class="tg-btn" target="_blank">
-      Испытать удачу
-    </a>
-  </div>
-</div>
-
 <script>
-/* ❄️ СНЕГ */
-setInterval(()=>{
-  const s=document.createElement('div');
-  s.className='snowflake';
-  s.style.left=Math.random()*100+'vw';
-  s.style.fontSize=10+Math.random()*18+'px';
-  s.style.animationDuration=5+Math.random()*6+'s';
-  s.innerHTML='❄';
+/* ❄️ СНЕГОПАД */
+setInterval(() => {
+  const s = document.createElement('div');
+  s.className = 'snowflake';
+  s.style.left = Math.random()*100 + 'vw';
+  s.style.fontSize = 10 + Math.random()*18 + 'px';
+  s.style.animationDuration = 4 + Math.random()*4 + 's';
+  s.innerHTML = '❄';
   document.body.appendChild(s);
-  setTimeout(()=>s.remove(),11000);
-},250);
+  setTimeout(() => s.remove(), 9000);
+}, 220);
 
 /* PRELOADER */
-const percentEl=document.getElementById('percent');
-const preloader=document.getElementById('preloader');
-const video=document.getElementById('video');
+const percentEl = document.getElementById('percent');
+const preloader = document.getElementById('preloader');
 
-let progress=0;
-let done=false;
+let progress = 0;
 
-const fake=setInterval(()=>{
-  if(progress<90){
+const fake = setInterval(() => {
+  if (progress < 90) {
     progress++;
-    percentEl.textContent=progress+'%';
+    percentEl.textContent = progress + '%';
   }
-},35);
+}, 18);
 
-function finishLoader(){
-  if(done) return;
-  done=true;
-  clearInterval(fake);
-
-  const fin=setInterval(()=>{
-    if(progress<100){
+window.addEventListener('load', () => {
+  const fin = setInterval(() => {
+    if (progress < 100) {
       progress++;
-      percentEl.textContent=progress+'%';
-    }else{
+      percentEl.textContent = progress + '%';
+    } else {
       clearInterval(fin);
-      setTimeout(()=>preloader.classList.add('hide'),300);
+      clearInterval(fake);
+      setTimeout(() => preloader.classList.add('hide'), 200);
     }
-  },15);
-}
-
-video.addEventListener('loadeddata', finishLoader, { once:true });
-setTimeout(finishLoader, 4000);
-
-/* VIDEO + POPUP */
-document.getElementById('play').onclick=async()=>{
-  try{
-    video.muted=false;
-    await video.play();
-  }catch{
-    video.play();
-  }
-  setTimeout(()=>document.getElementById('popup').classList.add('active'),13000);
-};
+  }, 12);
+});
 </script>
-
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104709922', 'ym');
-
-    ym(104709922, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/104709922" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
 
 </body>
 </html>

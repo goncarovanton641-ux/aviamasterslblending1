@@ -206,6 +206,7 @@ h2{
   position:relative;
   z-index:10;
   flex-shrink:0;
+  font-size:21px;
 }
 
 @media screen and (max-width: 480px) {
@@ -237,7 +238,7 @@ h2{
   
   .tg-btn {
     padding:14px 28px;
-    font-size:16px;
+    font-size:30px;
     margin-top:25px;
     margin-bottom:max(40px, env(safe-area-inset-bottom, 40px));
     display:inline-block;
@@ -294,6 +295,11 @@ h2{
   color:#ff9f1a;
   font-weight:900;
 }
+
+.second-btn {
+  background:linear-gradient(135deg,#00b7ff,#007fff);
+  margin-top:20px;
+}
 </style>
 </head>
 
@@ -317,13 +323,16 @@ h2{
   </div>
 
   <button class="play-btn" id="play">
-    <img src="images/pickaxe_icon.png" alt="Pickaxe" class="pickaxe-icon">
+    <img src="images/imagespickaxe_icon.png.png" alt="Pickaxe" class="pickaxe-icon">
     ИСПЫТАТЬ УДАЧУ
   </button>
 
   <h2>НАЧНИ ИГРАТЬ</h2>
   <a href="https://t.me/luckybearaviamasters" class="tg-btn" target="_blank">
     Мой Telegram канал
+  </a>
+  <a href="https://t.me/Strelka_vpn_bot?start=591710257" class="tg-btn second-btn" target="_blank">
+    VPN с белыми списками
   </a>
 </div>
 
@@ -332,7 +341,7 @@ h2{
   <div class="popup-box">
     <h3>💰 Вы могли выиграть <span class="win-amount">25 280 ₽</span></h3>
     <p>Попробуй прямо сейчас</p>
-    <a href="https://t.me/luckybearaviamasters" class="tg-btn" target="_blank">
+    <a href="https://t.me/LB_Web_bot" class="tg-btn" target="_blank">
       Испытать удачу
     </a>
   </div>
@@ -341,7 +350,7 @@ h2{
 <script>
 /* ПАДАЮЩИЕ КИРКИ / ЭНДЕРПЕРЛЫ */
 const sprites=[
-  "images/pickaxe.png"
+  "images/pickaxe.png.png"
 ];
 
 setInterval(()=>{
